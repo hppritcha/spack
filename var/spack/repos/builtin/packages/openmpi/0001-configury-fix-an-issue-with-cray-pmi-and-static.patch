@@ -1,0 +1,23 @@
+From 7a5ceb72004a3ba3752671e0c6a4039b67c5806d Mon Sep 17 00:00:00 2001
+From: Howard Pritchard <howardp@lanl.gov>
+Date: Fri, 22 Sep 2017 11:19:43 -0600
+Subject: [PATCH] configury: fix an issue with cray pmi and static
+
+Signed-off-by: Howard Pritchard <howardp@lanl.gov>
+
+diff --git a/config/opal_check_cray_pmi.m4 b/config/opal_check_cray_pmi.m4
+index 8e3dfee5..6a2adbcf 100644
+--- a/config/opal_check_cray_pmi.m4
++++ b/config/opal_check_cray_pmi.m4
+@@ -94,7 +94,7 @@ AC_DEFUN([OPAL_CHECK_CRAY_PMI],[
+          ])
+ 
+     AS_IF([test "$opal_check_cray_pmi_happy" = "yes" && test "$enable_static" = "yes"],
+-          [CRAY_PMI_LIBS = $CRAY_PMI_STATIC_LIBS],[])
++          [CRAY_PMI_LIBS=$CRAY_PMI_STATIC_LIBS],[])
+ 
+     AS_IF([test "$opal_check_cray_pmi_happy" = "yes"],
+           [$1_LDFLAGS="$CRAY_PMI_LIBS"
+-- 
+1.8.5.6
+
