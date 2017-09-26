@@ -172,6 +172,7 @@ class Openmpi(AutotoolsPackage):
     patch('llnl-platforms.patch', when="@1.6.5")
     patch('configure.patch', when="@1.10.1")
     patch('fix_multidef_pmi_class.patch', when="@2.0.0:2.0.1")
+    patch('0001-configury-fix-an-issue-with-cray-pmi-and-static.patch', when="@2.1.2")
 
     variant(
         'fabrics',
@@ -205,6 +206,15 @@ class Openmpi(AutotoolsPackage):
     depends_on('hwloc +cuda', when='+cuda')
     depends_on('java', when='+java')
     depends_on('sqlite', when='+sqlite3@:1.11')
+
+    # Needed to enable using external PMIx
+    depends_on('libevent', when='@2.0.0:')
+
+    # Somewhat complicated PMIx dependencies:
+    #     The Open MPI 2.0.x and 2.1.x release streams only work with PMIx 1.x
+    #     Later versions of Open MPI need PMIx 2.x or higher.
+    depends_on('pmix@:1.2.3', when='@2.0.0:2.1')
+    depends_on('pmix', when='@3.0.0:')
 
     conflicts('+cuda', when='@:1.6')  # CUDA support was added in 1.7
     conflicts('fabrics=psm2', when='@:1.8')  # PSM2 support was added in 1.10.0
@@ -289,6 +299,7 @@ class Openmpi(AutotoolsPackage):
     def configure_args(self):
         spec = self.spec
         config_args = [
+            '--disable-silent-rules',
             '--enable-shared',
             '--enable-static'
         ]
@@ -303,6 +314,14 @@ class Openmpi(AutotoolsPackage):
         # Hwloc support
         if spec.satisfies('@1.5.2:'):
             config_args.append('--with-hwloc={0}'.format(spec['hwloc'].prefix))
+
+        # libevent support (needed to work with external PMIx)
+        if spec.satisfies('@2.0.0:'):
+            config_args.append('--with-libevent={0}'.format(spec['libevent'].prefix))
+
+        # PMIx support
+        if spec.satisfies('@2.0.0:'):
+            config_args.append('--with-pmix={0}'.format(spec['pmix'].prefix))
 
         # Java support
         if spec.satisfies('@1.7.4:'):
@@ -330,8 +349,11 @@ class Openmpi(AutotoolsPackage):
             if '+vt' not in spec:
                 config_args.append('--enable-contrib-no-build=vt')
 
-        # Multithreading support
-        if spec.satisfies('@1.5.4:'):
+        # Multithreading support - for 2.0.0 and higher
+        # this argument was removed from configury.  For
+        # 2.0.0 and later, thread multiple enabled by default.
+        # Note 1.10.x release stream ended at 1.10.7.
+        if spec.satisfies('@1.5.4:1.10.7'):
             if '+thread_multiple' in spec:
                 config_args.append('--enable-mpi-thread-multiple')
             else:
