@@ -72,6 +72,10 @@ class Libhio(AutotoolsPackage):
         spec = self.spec
         args = []
 
+        if 'platform!=cray' in self.spec:
+            args.append('CC={0}'.format(spec['mpi'].mpicc))
+            args.append('FC={0}'.format(spec['mpi'].mpifort))
+
         args.append('--with-external_bz2={0}'.format(spec['bzip2'].prefix))
         if '+hdf5' in spec:
             args.append('--with-hdf5={0}'.format(spec['hdf5'].prefix))
