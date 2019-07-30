@@ -1,0 +1,277 @@
+#
+# Ansible managed: /var/ansible/roles/spack.Config/templates/modules.yaml modified on 2019-06-12 16:21:47
+#
+# vim: set sw=2 ft=yaml:
+# spack module lmod refresh --delete-tree -y %gcc
+# spack module lmod refresh -y %clang
+# -------------------------------------------------------------------------
+modules::
+  enable::
+    - lmod
+  lmod:
+    hash_length: 0
+    naming_scheme: '${PACKAGE}/${VERSION}'
+    core_compilers: ['gcc@9.1.0']
+    whitelist:
+      - 'gcc'
+      - 'llvm'
+    blacklist:
+      - 'autoconf'
+      - 'automake'
+      - 'binutils'
+      - 'bison'
+      - 'bzip2'
+      - 'curl'
+      - 'damageproto'
+      - 'expat'
+      - 'fixesproto'
+      - 'flex'
+      - 'freetype'
+      - 'gdbm'
+      - 'gettext'
+      - 'glib'
+      - 'glproto'
+      - 'googletest'
+      - 'hwloc'
+      - 'icu4c'
+      - 'inputproto'
+      - 'json-c'
+      - 'kbproto'
+      - 'libbsd'
+      - 'libgcrypt'
+      - 'libjpeg-turbo'
+      - 'libpciaccess'
+      - 'libpng'
+      - 'libpthread-stubs'
+      - 'libtiff'
+      - 'libtool'
+      - 'libx11'
+      - 'libxau'
+      - 'libxcb'
+      - 'libxdamage'
+      - 'libxdmcp'
+      - 'libxext'
+      - 'libxfixes'
+      - 'libxml2'
+      - 'libxshmfence'
+      - 'libxv'
+      - 'libxvmc'
+      - 'lz4'
+      - 'm4'
+      - 'munge'
+      - 'nasm'
+      - 'ncurses'
+      - 'openblas'
+      - 'openssl'
+      - 'perl'
+      - 'pkg-config'
+      - 'presentproto'
+      - 'qhull'
+      - 'readline'
+      - 'sqlite'
+      - 'util-macros'
+      - 'videoproto'
+      - 'xcb-proto'
+      - 'xextproto'
+      - 'xproto'
+      - 'xtrans'
+      - 'xz'
+      - 'zlib'
+    all:
+      suffixes:
+        '%gcc@9.1.0': gcc@9.1.0
+    ^python:
+      autoload: 'direct'
+    calico:
+      environment:
+        set:
+          CALICO_INC_DIR: ${PREFIX}/include
+          CALICO_LIB_DIR: ${PREFIX}/lib
+    cashdsd:
+      environment:
+        set:
+          CASHDSD_INC_DIR: ${PREFIX}/include
+          CASHDSD_LIB_DIR: ${PREFIX}/lib
+          CASHDSD_MOD_DIR: ${PREFIX}/mod
+    draco:
+      environment:
+        set:
+          DRACO_LIB_DIR: ${PREFIX}/lib
+          DRACO_MOD_DIR: ${PREFIX}/mod
+    dsd:
+      environment:
+        set:
+          DSD_LIB_DIR: ${PREFIX}/lib
+          DSD_MOD_DIR: ${PREFIX}/mod
+    eospac5:
+      environment:
+        set:
+          EOSPAC5_INC_DIR: ${PREFIX}/include
+          EOSPAC5_LIB_DIR: ${PREFIX}/lib
+          SESAMXD_INC_DIR: ${PREFIX}/include
+          SESAMXD_LIB_DIR: ${PREFIX}/lib
+    eospac:
+      environment:
+        set:
+          EOSPAC6_INC_DIR: ${PREFIX}/include
+          EOSPAC6_LIB_DIR: ${PREFIX}/lib
+    gandolf:
+      environment:
+        set:
+          GANDOLF_INC_DIR: ${PREFIX}/include
+          GANDOLF_LIB_DIR: ${PREFIX}/lib
+    gcc:
+      environment:
+        set:
+          LCOMPILER: ${PACKAGE}
+          LCOMPILERVER: ${VERSION}
+    gmp:
+      environment:
+        set:
+          GMP_LIB_DIR: ${PREFIX}/lib
+    gsl:
+      environment:
+        set:
+          GSL_INC_DIR: ${PREFIX}/include
+          GSL_LIB_DIR: ${PREFIX}/lib
+    hdf5:
+      environment:
+        set:
+          HDF5_INC_DIR: ${PREFIX}/include
+          HDF5_LIB_DIR: ${PREFIX}/lib
+      suffixes:
+        '~mpi': =mpi
+    hypre:
+      environment:
+        set:
+          HYPRE_INC_DIR: ${PREFIX}/include
+          HYPRE_LIB_DIR: ${PREFIX}/lib
+    intergrid:
+      environment:
+        set:
+          INTERGRID_INC_DIR: ${PREFIX}/include
+          INTERGRID_LIB_DIR: ${PREFIX}/lib
+    leos:
+      environment:
+        set:
+          LEOS_INC_DIR: ${PREFIX}/include
+          LEOS_LIB_DIR: ${PREFIX}/lib
+    libquo:
+      environment:
+        set:
+          QUO_HOME: ${PREFIX}
+    llvm:
+      environment:
+        set:
+          CC: clang
+          CXX: clang++
+          FC: gfortran
+          F90: gfortran
+          F95: gfortran
+          F77: gfortran
+          LCOMPILER: ${PACKAGE}
+          LCOMPILERVER: ${VERSION}
+    metis:
+      environment:
+        set:
+          METIS_INC_DIR: ${PREFIX}/include
+          METIS_LIB_DIR: ${PREFIX}/lib
+    ndi:
+      environment:
+        set:
+          NDI_GENDIR_PATH: /usr/projects/data/nuclear/ndi/${VERSION}/share/gendir
+          NDI_INC_DIR: ${PREFIX}/include/ndi
+          NDI_LIB_DIR: ${PREFIX}/lib
+    papi:
+      environment:
+        set:
+          PAPI_LIBDIR: ${PREFIX}/lib
+          PAPI_LIB_DIR: ${PREFIX}/lib
+    paraview:
+      suffixes:
+        '+osmesa': osmesa
+      template: 'modules/paraview.lua'
+    parmetis:
+      environment:
+        set:
+          PARMETIS_INC_DIR: ${PREFIX}/include
+          PARMETIS_LIB_DIR: ${PREFIX}/lib
+    perflib:
+      environment:
+        set:
+          PERF_INC_DIR: ${PREFIX}/include
+          PERF_LIB_DIR: ${PREFIX}/lib
+          PERF_DIR: ${PREFIX}/lib
+    python:
+      environment:
+        set:
+          LPYTHON_HOME: ${PREFIX}
+          PYTHONHOME: ${PREFIX}
+    r3d:
+      environment:
+        set:
+          R3D_INC_DIR: ${PREFIX}/include
+          R3D_LIB_DIR: ${PREFIX}/lib
+    shapo:
+      environment:
+        set:
+          SHAPO_INC_DIR: ${PREFIX}/include
+          SHAPO_LIB_DIR: ${PREFIX}/lib
+          SHAPO_MOD_DIR: ${PREFIX}/fortran
+    silo:
+      environment:
+        set:
+          SILO_INC_DIR: ${PREFIX}/include
+          SILO_LIB_DIR: ${PREFIX}/lib
+    superlu-dist:
+      environment:
+        set:
+          SUPERLUDIST_INC_DIR: ${PREFIX}/include
+          SUPERLUDIST_LIB_DIR: ${PREFIX}/lib
+    trilinos:
+      environment:
+        set:
+          TRILINOS_INC_DIR: ${PREFIX}/include
+          TRILINOS_LIB_DIR: ${PREFIX}/lib
+    trt:
+      environment:
+        set:
+          TRT_INC_DIR: ${PREFIX}/include
+          TRT_LIB_DIR: ${PREFIX}/lib
+    rewrite:
+      environment:
+        set:
+          REWRITE_BIN_DIR: ${PREFIX}/bin
+    umpire:
+      environment:
+        set:
+          UMPIRE_INC_DIR: ${PREFIX}/include
+          UMPIRE_LIB_DIR: ${PREFIX}/lib
+    zoltan:
+      environment:
+        set:
+          ZOLTAN_INC_DIR: ${PREFIX}/include
+          ZOLTAN_LIB_DIR: ${PREFIX}/lib
+  prefix_inspections:
+    bin:
+      - PATH
+    man:
+      - MANPATH
+    share/man:
+      - MANPATH
+    share/aclocal:
+      - ACLOCAL_PATH
+    lib:
+      - LIBRARY_PATH
+      - LD_LIBRARY_PATH
+    lib64:
+      - LIBRARY_PATH
+      - LD_LIBRARY_PATH
+    include:
+      - CPATH
+    lib/pkgconfig:
+      - PKG_CONFIG_PATH
+    lib64/pkgconfig:
+      - PKG_CONFIG_PATH
+    '':
+      - CMAKE_PREFIX_PATH
