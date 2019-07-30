@@ -71,7 +71,7 @@ class Zoltan(AutotoolsPackage):
     def parallel(self):
         # NOTE: Earlier versions of Zoltan cannot be built in parallel
         # because they contain nested Makefile dependency bugs.
-        return not self.spec.satisfies('@:3.6+fortran')
+        return False
 
     def autoreconf(self, spec, prefix):
         autoreconf = which('autoreconf')

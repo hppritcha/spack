@@ -68,9 +68,7 @@ class PyNumpy(PythonPackage):
     variant('blas',   default=True, description='Build with BLAS support')
     variant('lapack', default=True, description='Build with LAPACK support')
 
-    depends_on('python@2.7:2.8,3.4:', type=('build', 'run'))
-    depends_on('python@2.7:2.8,3.5:', type=('build', 'run'), when='@1.16:')
-    depends_on('python@3.5:', type=('build', 'run'), when='@1.17:')
+    depends_on('python@3.4:', type=('build', 'run'))
     depends_on('py-setuptools', type='build')
     depends_on('blas',   when='+blas')
     depends_on('lapack', when='+lapack')
