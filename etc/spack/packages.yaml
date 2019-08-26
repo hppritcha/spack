@@ -179,7 +179,7 @@ packages:
     version: ['2.2.0', '2.1.3', '2.1.3beta']
   openmpi:
     variants: ['fabrics=auto', '~memchecker', '~pmi', 'schedulers=auto']
-    version: ['3.1.3']
+    version: ['3.1.4']
   openssl:
     buildable: False
     paths:
