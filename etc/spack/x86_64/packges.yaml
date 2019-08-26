@@ -1,0 +1,257 @@
+#
+# Ansible managed: /var/ansible/roles/spack.Config/templates/linux_packages.yaml modified on 2019-07-09 11:06:05
+#
+# -------------------------------------------------------------------------
+# vim: set sw=2 ft=yaml:
+#
+# This file controls default concretization preferences for Spack.
+#
+# Settings here are versioned with Spack and are intended to provide
+# sensible defaults out of the box. Spack maintainers should edit this
+# file to keep it current.
+#
+# Users can override these settings by editing the following files.
+#
+# Per-spack-instance settings (overrides defaults):
+#   $SPACK_ROOT/etc/spack/packages.yaml
+#
+# Per-user settings (overrides default and site settings):
+#   ~/.spack/packages.yaml
+# -------------------------------------------------------------------------
+
+packages:
+  all:
+    compiler: ['gcc']
+    providers:
+      blas: [netlib-lapack]
+      lapack: [netlib-lapack]
+      mpi: ['openmpi']
+      pil: ['py-pillow']
+  autoconf:
+    buildable: False
+    paths:
+      autoconf@2.69: /usr
+  automake:
+    buildable: False
+    paths:
+      automake@1.13.4: /usr
+  bison:
+    buildable: False
+    paths:
+      bison@3.0.4: /usr
+  boost:
+    variants: ['cxxstd=14', '+mpi', '+pic']
+    version: ['1.67.0']
+  bzip2:
+    buildable: False
+    paths:
+      bzip2@1.0.6: /usr
+  calico:
+    variants: ['+mpi']
+    version: ['1.7.0', '180611']
+  curl:
+    buildable: False
+    paths:
+      curl@7.29.0: /usr
+  draco:
+    variants: ['+eospac', '+lapack', '+parmetis', '+superlu_dist']
+    version: ['7.1.0']
+  eospac5:
+    version: ['5.35.1']
+  eospac:
+    version: ['6.4.0', '6.4.0beta.4', '6.4.0beta.3', '6.4.0beta.2']
+  flex:
+    buildable: False
+    paths:
+      flex@2.5.37: /usr
+  freetype:
+    buildable: False
+    paths:
+      freetype@2.8: /usr
+  gawk:
+    buildable: False
+    paths:
+      gettext@4.0.2: /usr
+  gettext:
+    buildable: False
+    paths:
+      gettext@0.19.8.1: /usr
+  git:
+    buildable: False
+    paths:
+      git@1.8.3.1: /usr
+  glib:
+    buildable: False
+    paths:
+      glib@2.56.1: /usr/lib64
+  gmake:
+    buildable: False
+    paths:
+      gettext@3.82: /usr
+  gsl:
+    version: ['2.3']
+  gnutls:
+    buildable: False
+    paths:
+      gnutls@3.3.29: /usr/lib64
+    variants: ['~guile']
+  hdf5:
+    variants: ['+fortran', '+hl', '+mpi']
+  help2man:
+    buildable: False
+    paths:
+      help2man@1.41.1: /usr
+  hwloc:
+    buildable: False
+    paths:
+      hwloc@1.11.8: /usr
+  hypre:
+    variants: ['~internal-superlu', '+mpi', '~superlu-dist']
+    version: ['2.10.0b']
+  jayenne:
+    version: ['8.0.1']
+  json-c:
+    buildable: False
+    paths:
+      json-c@0.11: /usr/lib64
+  leos:
+    variants: ['~filters', '~mpi']
+    version: ['8.1.1']
+  libelf:
+    buildable: False
+    paths:
+      libelf@0.172: /usr/lib64
+  libjpeg-turbo:
+    version: ['1.2.90']
+  libpng:
+    buildable: False
+    paths:
+      libpng@1.5.13: /usr/lib64
+  libsigsegv:
+    buildable: False
+    paths:
+      libsigsegv@2.10: /usr/lib64
+  libssh2:
+    buildable: False
+    paths:
+      libssh2@1.4.3: /usr/lib64
+  libtool:
+    buildable: False
+    paths:
+      libtool@2.4.2: /usr
+  libxml2:
+    buildable: False
+    paths:
+      libxml2@2.9.1: /usr
+  llvm:
+    variants: ['+link_dylib']
+    version: ['9.0.1', '8.0.1', '7.0.2', '6.0.1', '5.0.1', '4.0.1']
+  lz4:
+    buildable: False
+    paths:
+      lz4@1.7.5: /usr/lib64
+  m4:
+    buildable: False
+    paths:
+      m4@1.4.16: /usr
+  matio:
+    variants: ['+hdf5']
+  mesa:
+    variants: ['+llvm']
+  metis:
+    variants: ['+int64', '+real64']
+  munge:
+    buildable: False
+    paths:
+      munge@0.5.11: /usr/lib64
+  mpc:
+    buildable: False
+    paths:
+      mpc@1.0.1: /usr/lib64
+  mpfr:
+    buildable: False
+    paths:
+      mpfr@3.1.1: /usr/lib64
+  ncurses:
+    buildable: False
+    paths:
+      ncurses@5.9: /usr
+    variants: ['~symlinks', '~termlib']
+  ndi:
+    version: ['2.2.0', '2.1.3', '2.1.3beta']
+  openmpi:
+    variants: ['fabrics=auto', '~memchecker', '~pmi', 'schedulers=auto']
+    version: ['3.1.3']
+  openssl:
+    buildable: False
+    paths:
+      openssl@1.0.2k: /usr/lib64
+    variants: ['+systemcerts']
+  paraview:
+    variants: ['+mpi', '+osmesa', '+python']
+    version: ['5.5.2', '5.4.0']
+  perl:
+    buildable: False
+    paths:
+       perl@5.16.3: /usr
+  perl-data-dumper:
+    buildable: False
+    paths:
+       perl-data-dumper@2.145: /usr/lib64
+  pkg-config:
+    buildable: False
+    paths:
+      pkg-config@0.27.1: /usr
+  py-matplotlib:
+    variants: ['~tk']
+    version: ['2.2.3', '2.2.2', '2.0.2']
+  py-pillow:
+    variants: ['+jpeg']
+    version: ['3.2.0']
+  py-numpy:
+    version: ['1.16.4']
+    paths:
+      py-numpy@1.16.4: /home/hpp/.local/lib/python2.7/site-packages
+    buildable: False
+  r3d:
+    version: ['2018-01-07', '2018-12-19']
+  rewrite:
+    version: ['180313']
+  shapo:
+    variants: ['+mpi', '+paraview']
+    version: ['171108']
+  silo:
+    variants: ['+mpi']
+    version: ['4.10.2-bsd']
+  superlu-dist:
+    version: ['5.4.0']
+  tar:
+    buildable: False
+    paths:
+      tar@1.26: /usr
+  tcl:
+    buildable: False
+    paths:
+      tcl@8.5.13: /usr/lib64
+  tk:
+    buildable: False
+    paths:
+      tk@8.5.13: /usr/lib64
+  trilinos:
+    variants: ['+amesos2', '+belos', '~mumps', '+nox', '~suite-sparse']
+    version: ['12.12.1', '12.10.1']
+  umpire:
+    variants: ['+fortran']
+    version: ['develop']
+  xz:
+    buildable: False
+    paths:
+      xz@5.2.2: /usr
+  zip:
+    buildable: False
+    paths:
+      zip@3.0: /usr
+  zoltan:
+    variants: ['+parmetis']
+
+
