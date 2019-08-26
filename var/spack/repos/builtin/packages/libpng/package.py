@@ -26,16 +26,26 @@ class Libpng(AutotoolsPackage):
 
     depends_on('zlib@1.0.4:')  # 1.2.5 or later recommended
 
+    #
+    # Only set this if using a more recent GCC if building for ARM.
+    #
+    variant('arm-neon', default=False, description='Build ARM neon support')
+
     def configure_args(self):
-        args = [
-            # not honored, see
-            #   https://sourceforge.net/p/libpng/bugs/210/#33f1
-            # '--with-zlib=' + self.spec['zlib'].prefix,
-            'CPPFLAGS={0}'.format(self.spec['zlib'].headers.include_flags),
-            'LDFLAGS={0}'.format(self.spec['zlib'].libs.search_flags),
-            '--enable-arm-neon'
-        ]
-        return args
+       spec = self.spec
+       args = [
+           # not honored, see
+           #   https://sourceforge.net/p/libpng/bugs/210/#33f1
+           # '--with-zlib=' + self.spec['zlib'].prefix,
+           'CPPFLAGS={0}'.format(self.spec['zlib'].headers.include_flags),
+           'LDFLAGS={0}'.format(self.spec['zlib'].libs.search_flags),
+       ]
+
+       if spec.satisfies('@1.6.34:'):
+           if '+arm-neon' in spec:
+               args.append('--enable-arm-neon=on')
+
+       return args
 
     def check(self):
         # Libpng has both 'check' and 'test' targets that are aliases.
