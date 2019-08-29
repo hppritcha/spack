@@ -35,7 +35,6 @@ class Silo(AutotoolsPackage):
     depends_on('zlib')
 
     patch('remove-mpiposix.patch', when='@4.8:4.10.2')
-    patch('add-an-updated-config.guess.patch', when='@4.10.2-bsd')
     patch('add-an-updated-config.guess.patch', when='@4.10.2')
 
     def flag_handler(self, name, flags):
