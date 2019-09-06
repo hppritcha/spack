@@ -13,6 +13,8 @@
 /etc/spack/*
 !/etc/spack/defaults
 !/etc/spack/x86_64
+!/etc/spack/aarch64_cce
+!/etc/spack/aarch64_gnu
 /etc/spackconfig
 /share/spack/dotkit
 /share/spack/modules

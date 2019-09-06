@@ -1,0 +1,6 @@
+mirrors:
+  # local_filesystem: file:///scratch/vendors/spack.mirror
+  local_filesystem: file:///usr/projects/draco/vendors/spack.mirror
+  local_filesystem2: file:///usr/projects/hpctools/hpp/spack/spack-mirror-2019-08-27
+  local_filesystem3: file:///usr/projects/hpctools/hpp/spack/spack-mirror-2019-08-28
+  local_filesystem4: file:///usr/projects/hpctools/hpp/spack/spack-mirror-2019-08-29
