@@ -285,6 +285,7 @@ packages:
     paths:
       zip@3.0: /usr
   zoltan:
+    version: ['3.83']
     variants: ['+parmetis']
 
 
