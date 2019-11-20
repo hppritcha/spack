@@ -32,7 +32,6 @@ config:
   module_roots:
     tcl:    /usr/projects/hpctools/hpp/lap_spack/modules
     lmod:   /usr/projects/hpctools/hpp/lap_spack/share/spack/lmod
-    dotkit: $spack/share/spack/dotkit
 
 
   # Temporary locations Spack can try to use for builds.
