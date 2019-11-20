@@ -29,7 +29,7 @@ class Binutils(AutotoolsPackage):
             description="enable plugins, needed for gold linker")
     variant('gold', default=True, description="build the gold linker")
     variant('libiberty', default=False, description='Also install libiberty.')
-    variant('nls', default=True, description='Enable Native Language Support')
+    variant('nls', default=False, description='Enable Native Language Support')
     variant('headers', default=False, description='Install extra headers (e.g. ELF)')
 
     patch('cr16.patch', when='@:2.29.1')
