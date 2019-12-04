@@ -93,7 +93,7 @@ then
    exit -1
 fi
 
-spack $CONFIG install rewrite@180313 % $COMPILER
+spack $CONFIG install rewrite@191106  % $COMPILER
 if [ $? -ne 0 ]
 then
    echo "rewrite install failed"
