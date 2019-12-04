@@ -81,9 +81,10 @@ modules::
     all:
       conflict:
         - '${PACKAGE}'
-      suffixes:
-        ^python@3.7.3:: 'python-3.7.3'
-        ^python@2.7.16:: 'python-2.7.16'
+#     suffixes:
+#       ^python@3.7.4:: 'python-3.7.4'
+#       ^python@3.7.3:: 'python-3.7.3'
+#       ^python@2.7.16:: 'python-2.7.16'
     ^python:
       autoload: 'direct'
     calico:
@@ -188,7 +189,7 @@ modules::
     ndi:
       environment:
         set:
-          NDI_GENDIR_PATH: ${PREFIX}/share/gendir
+          NDI_GENDIR_PATH: /usr/projects/data/nuclear/ndi/2.1.3/share/gendir
           NDI_INC_DIR: ${PREFIX}/include/ndi
           NDI_LIB_DIR: ${PREFIX}/lib
     netlib-lapack:
