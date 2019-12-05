@@ -1,4 +1,6 @@
 #!/bin/bash -l
+#SBATCH -p arm
+#SBATCH -t 8:00:00
 
 pushd /usr/projects/artab/users/hpp/spack
 
@@ -9,7 +11,7 @@ CONFIG="-C etc/spack/aarch64_gnu"
 
 # spack $CONFIG install gcc@9.1.0 % gcc@4.8.5
 
-spack $CONFIG install --no-checksum papi@5.6.0 % $COMPILER
+spack $CONFIG install papi@5.7.0 % $COMPILER
 if [ $? -ne 0 ]
 then
    echo "papi install failed"
@@ -121,7 +123,7 @@ then
    exit -1
 fi
 
-spack $CONFIG install zoltan@3.8 % $COMPILER
+spack $CONFIG install zoltan@3.83 % $COMPILER
 if [ $? -ne 0 ]
 then
    echo "zoltan install failed"
@@ -142,7 +144,7 @@ then
    exit -1
 fi
 
-spack $CONFIG install shapo@171108 % $COMPILER
+spack $CONFIG install shapo@190709 % $COMPILER
 if [ $? -ne 0 ]
 then
    echo "shapo install failed"
