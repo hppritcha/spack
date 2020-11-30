@@ -22,10 +22,17 @@ class Libtheora(AutotoolsPackage):
     depends_on('doxygen',  type='build')
     depends_on('libogg')
 
-    def autoreconf(self, spec, prefix):
+    patch('dont_use_png_sizeof.patch')
+
+    phases = ['install']
+
+    def install(self, spec, prefix):
         sh = which('sh')
         if self.spec.satisfies('target=aarch64:'):
             sh('./autogen.sh', 'prefix={0}'.format(prefix),
                '--build=arm-linux')
         else:
             sh('./autogen.sh', 'prefix={0}'.format(prefix))
+        make('install')
+
+
