@@ -255,14 +255,14 @@ case "$command" in
         lang_flags=CXX
         debug_flags="-g"
         ;;
-    ftn|f90|fc|f95|gfortran|flang|armflang|ifort|ifx|pgfortran|nvfortran|xlf90|xlf90_r|nagfor|frt|amdflang|crayftn)
+    ftn|f90|fc|f95|gfortran|flang|flang-new|armflang|ifort|ifx|pgfortran|nvfortran|xlf90|xlf90_r|nagfor|frt|amdflang|crayftn)
         command="$SPACK_FC"
         language="Fortran 90"
         comp="FC"
         lang_flags=F
         debug_flags="-g"
         ;;
-    f77|xlf|xlf_r|pgf77)
+    f77|xlf|xlf_r|pgf77|flang-new)
         command="$SPACK_F77"
         language="Fortran 77"
         comp="F77"

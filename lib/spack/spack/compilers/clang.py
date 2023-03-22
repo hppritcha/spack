@@ -9,7 +9,7 @@ import sys
 
 import llnl.util.lang
 
-from spack.compiler import Compiler, UnsupportedCompilerFlag
+from spack.compiler import Compiler, UnsupportedCompilerFlag, get_compiler_version_output
 from spack.version import ver
 
 #: compiler symlink mappings for mixed f77 compilers
@@ -39,10 +39,10 @@ class Clang(Compiler):
     cxx_names = ["clang++"]
 
     # Subclasses use possible names of Fortran 77 compiler
-    f77_names = ["flang", "gfortran", "xlf_r"]
+    f77_names = ["flang-new"]
 
     # Subclasses use possible names of Fortran 90 compiler
-    fc_names = ["flang", "gfortran", "xlf90_r"]
+    fc_names = ["flang-new"]
 
     version_argument = "--version"
 
@@ -81,14 +81,14 @@ class Clang(Compiler):
                 link_paths["f77"] = link_path
                 break
         else:
-            link_paths["f77"] = os.path.join("clang", "flang")
+            link_paths["f77"] = os.path.join("clang", "flang-new")
 
         for compiler_name, link_path in fc_mapping:
             if self.fc and compiler_name in self.fc:
                 link_paths["fc"] = link_path
                 break
         else:
-            link_paths["fc"] = os.path.join("clang", "flang")
+            link_paths["fc"] = os.path.join("clang", "flang-new")
 
         return link_paths
 
@@ -190,7 +190,19 @@ class Clang(Compiler):
         if sys.platform == "darwin":
             return cls.default_version("clang")
         else:
-            return cls.default_version(fc)
+            ver = "unknown"
+            output = get_compiler_version_output(fc, "--version")
+            match = re.search(
+                # Normal clang compiler versions are left as-is
+                r"flang-new version ([^ )\n]+)-svn[~.\w\d-]*|"
+                # Don't include hyphenated patch numbers in the version
+                # (see https://github.com/spack/spack/pull/14365 for details)
+                r"flang-new version ([^ )\n]+?)-[~.\w\d-]*|" r"flang-new version ([^ )\n]+)",
+                output,
+            )
+            if match:
+                ver = match.group(match.lastindex)
+            return ver
 
     @classmethod
     def f77_version(cls, f77):
