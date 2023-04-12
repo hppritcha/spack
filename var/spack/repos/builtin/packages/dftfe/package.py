@@ -31,19 +31,19 @@ class Dftfe(CMakePackage):
         values=("Debug", "Release"),
     )
     variant(
-        "fp_type"
+        "fp_type",
         default="real",
         description="Floating point type",
         values=("real", "complex"),
     )
     variant(
-        "gpu_lang"
+        "gpu_lang",
         default="none",
         description="GPU language",
         values=("none", "cuda", "hip"),
     )
     variant(
-        "gpu_vendor"
+        "gpu_vendor",
         default="none",
         description="GPU vendor",
         values=("none", "amd", "nvidia"),
@@ -85,7 +85,7 @@ class Dftfe(CMakePackage):
 
         if "build_type=Debug" in spec:
             args.append("-DCMAKE_BUILD_TYPE=Debug");
-        else
+        else:
             args.append("-DCMAKE_BUILD_TYPE=Release");
 
         if "fp_type=real" in spec:
@@ -101,7 +101,7 @@ class Dftfe(CMakePackage):
         elif "gpu_lang=hip" in spec:
             args.append("-DWITH_GPU=1");
             args.append("-DGPU_LANG=hip");
-        else
+        else:
             args.append("-DWITH_GPU=0");
 
         if "gpu_vendor=amd" in spec:
