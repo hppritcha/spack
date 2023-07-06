@@ -1,5 +1,5 @@
 CC = $(SPACK_CXX)
-CFLAGS = -fPIC -Wall -O2 -g
+CFLAGS = -fPIC -Wall -O0 -g
 LDFLAGS = -shared
 RM = rm -f
 TARGET_LIB = libalglib.so
