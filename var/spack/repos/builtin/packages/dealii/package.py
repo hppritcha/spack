@@ -15,7 +15,7 @@ class Dealii(CMakePackage, CudaPackage):
 
     homepage = "https://www.dealii.org"
     url = "https://github.com/dealii/dealii/releases/download/v8.4.1/dealii-8.4.1.tar.gz"
-    git = "https://github.com/dealii/dealii.git"
+    git = "https://github.com/dftfeDevelopers/dealii.git"
 
     maintainers("jppelteret", "luca-heltai")
 
@@ -25,7 +25,7 @@ class Dealii(CMakePackage, CudaPackage):
 
     generator("ninja")
 
-    version("master", branch="master")
+    version("master", branch="dealiiCustomizedCUDARelease")
     version("9.4.2", sha256="45a76cb400bfcff25cc2d9093d9a5c91545c8367985e6798811c5e9d2a6a6fd4")
     version("9.4.1", sha256="bfe5e4bf069159f93feb0f78529498bfee3da35baf5a9c6852aa59d7ea7c7a48")
     version("9.4.0", sha256="238677006cd9173658e5b69cdd1861f800556982db6005a3cc5eb8329cc1e36c")
